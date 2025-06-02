@@ -78,8 +78,8 @@
                 </li>
 
                 <!-- Rentals -->
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
-                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/rentals') }">
+                    <Link href="/admin/rentals" class="nav-link d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
                             <i class="fa fa-file-alt icon icon-xs me-2"></i>

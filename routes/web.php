@@ -24,5 +24,11 @@ Route::prefix('admin')->group(function () {
         Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin']);
         // route cars
         Route::resource('/cars', App\Http\Controllers\Admin\CarController::class, ['as' => 'admin']);
+        // route rentals
+        Route::get('/rentals', [App\Http\Controllers\Admin\RentalController::class, 'index'])->name('admin.rentals.index');
+    });
+
+    Route::group(['middleware' => ['auth']], function () {
+        Route::get('/rentals/{rental}', [App\Http\Controllers\Admin\RentalController::class, 'show'])->name('rentals.show');
     });
 });
