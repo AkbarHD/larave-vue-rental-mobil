@@ -1,4 +1,5 @@
 <template>
+
     <Head>
         <title>Sliders - Rental Mobil</title>
     </Head>
@@ -14,12 +15,7 @@
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <label for="image" class="form-label">Upload Image</label>
-                                        <input
-                                            type="file"
-                                            id="image"
-                                            class="form-control"
-                                            @change="handleFileUpload"
-                                        />
+                                        <input type="file" id="image" class="form-control" @change="handleFileUpload" />
                                         <small class="text-muted">Allowed formats: JPG, PNG. Max size: 2MB</small>
                                         <div v-if="errors.image" class="alert alert-danger mt-2">
                                             {{ errors.image }}
@@ -27,13 +23,10 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex justify-content-end mb-3">
-                                    <button
-                                    type="submit"
-                                    class="btn btn-primary w-100 shadow custom-button"
-                                >
-                                    <i class="fas fa-paper-plane"></i>
-                                    Submit
-                                </button>
+                                    <button type="submit" class="btn btn-primary w-100 shadow custom-button">
+                                        <i class="fas fa-paper-plane"></i>
+                                        Submit
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -59,13 +52,17 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="(slider, index) in sliders.data" :key="slider.id">
-                                        <td class="fw-bold text-center">{{ index + 1 + (sliders.current_page - 1) * sliders.per_page }}</td>
+                                        <td class="fw-bold text-center">{{ index + 1 + (sliders.current_page - 1) *
+                                            sliders.per_page }}</td>
                                         <td>
-                                             <img :src="`${slider.image}`" alt="Slider Image" class="img-fluid rounded" style="max-height: 50px;">
-                                         </td>
+                                            <img :src="`${slider.image}`" alt="Slider Image" class="img-fluid rounded"
+                                                style="max-height: 50px;">
+                                        </td>
                                         <td class="text-center">
                                             <!-- Delete button for each slider -->
-                                            <button @click.prevent="destroy(slider.id)" class="btn btn-sm btn-danger border-0 ms-2"><i class="fa fa-trash"></i> Delete</button>
+                                            <button @click.prevent="destroy(slider.id)"
+                                                class="btn btn-sm btn-danger border-0 ms-2"><i class="fa fa-trash"></i>
+                                                Delete</button>
 
                                         </td>
                                     </tr>
@@ -124,16 +121,16 @@ export default {
             });
         };
 
-            const destroy = (id) => {
-                Swal.fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda tidak akan dapat mengembalikan ini!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                })
+        const destroy = (id) => {
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Anda tidak akan dapat mengembalikan ini!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            })
                 .then((result) => {
                     if (result.isConfirmed) {
                         router.delete(`/admin/sliders/${id}`);
@@ -146,7 +143,7 @@ export default {
                         });
                     }
                 })
-            }
+        }
 
         return {
             formData,
@@ -159,8 +156,8 @@ export default {
 </script>
 
 <style scoped>
-    .img-fluid {
-        max-width: 100%;
-        height: auto;
-    }
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
 </style>

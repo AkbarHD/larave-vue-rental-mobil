@@ -19,6 +19,10 @@ Route::prefix('admin')->group(function () {
         //route dashboard
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
         // route sliders
-Route::resource('/sliders', App\Http\Controllers\Admin\SliderController::class, ['as' => 'admin']);
+        Route::resource('/sliders', App\Http\Controllers\Admin\SliderController::class, ['as' => 'admin']);
+
+        //route categories
+        Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin']);
+
     });
 });

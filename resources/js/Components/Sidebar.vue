@@ -52,6 +52,18 @@
                     </Link>
                 </li>
 
+                  <!-- catgories -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/categories') }">
+                    <Link href="/admin/categories" class="nav-link d-flex justify-content-between align-items-center">
+                        <span>
+                            <span class="sidebar-icon">
+                                <i class="fa fa-tags icon icon-xs me-2"></i>
+                            </span>
+                            <span class="sidebar-text">Category</span>
+                        </span>
+                    </Link>
+                </li>
+
                 <!-- Cars -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
                     <Link href="" class="nav-link d-flex justify-content-between align-items-center">
@@ -113,6 +125,43 @@
                         </span>
                     </Link>
                 </li>
+
+                   <!-- site setting -->
+                   <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
+                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                        <span>
+                            <span class="sidebar-icon">
+                                <i class="fa fa-cog icon icon-xs me-2"></i>
+                            </span>
+                            <span class="sidebar-text">Site Settings</span>
+                        </span>
+                    </Link>
+                </li>
+
+                <!-- template message -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
+                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                        <span>
+                            <span class="sidebar-icon">
+                                <i class="fa fa-envelope-open-text icon icon-xs me-2"></i>
+                            </span>
+                            <span class="sidebar-text">Template Messages</span>
+                        </span>
+                    </Link>
+                </li>
+
+                <!-- Laporan -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
+                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                        <span>
+                            <span class="sidebar-icon">
+                                <i class="fa fa-chart-bar icon icon-xs me-2"></i>
+                            </span>
+                            <span class="sidebar-text">Laporan Penyewaan</span>
+                        </span>
+                    </Link>
+                </li>
+
             </ul>
         </div>
     </nav>
