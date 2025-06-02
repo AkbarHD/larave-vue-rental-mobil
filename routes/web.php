@@ -20,9 +20,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/dashboard', App\Http\Controllers\Admin\DashboardController::class)->name('admin.dashboard');
         // route sliders
         Route::resource('/sliders', App\Http\Controllers\Admin\SliderController::class, ['as' => 'admin']);
-
         //route categories
         Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class, ['as' => 'admin']);
-
+        // route cars
+        Route::resource('/cars', App\Http\Controllers\Admin\CarController::class, ['as' => 'admin']);
     });
 });
