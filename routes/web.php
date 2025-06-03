@@ -30,6 +30,12 @@ Route::prefix('admin')->group(function () {
 
         // route addons
         Route::resource('/addons', App\Http\Controllers\Admin\AddonController::class, ['as' => 'admin']);
+
+        // route payments
+        Route::resource('/payments', App\Http\Controllers\Admin\PaymentController::class, ['as' => 'admin']);
+
+        // route reviews
+        Route::resource('/reviews', App\Http\Controllers\Admin\ReviewController::class, ['as' => 'admin']);
     });
 });
 

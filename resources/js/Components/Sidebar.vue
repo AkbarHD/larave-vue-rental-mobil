@@ -104,8 +104,8 @@
                 </li>
 
                 <!-- Payments -->
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
-                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/payments') }">
+                    <Link href="/admin/payments" class="nav-link d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
                             <i class="fa fa-dollar-sign icon icon-xs me-2"></i>
