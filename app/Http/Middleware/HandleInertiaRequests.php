@@ -37,7 +37,21 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $siteSetting = SiteSetting::first();
+
         return array_merge(parent::share($request), [
+           'siteSetting' => [
+                'site_name' => $siteSetting->site_name ?? '',
+                'logo' => $siteSetting->logo ?? null,
+                'facebook_url' => $siteSetting->facebook_url ?? null,
+                'twitter_url' => $siteSetting->twitter_url ?? null,
+                'instagram_url' => $siteSetting->instagram_url ?? null,
+                'whatsapp_url' => $siteSetting->whatsapp_url ?? null,
+                'location_embed_links' => $siteSetting->location_embed_links ?? null,
+                'description' => $siteSetting->description ?? null,
+            ],
+
+            //user authenticated
             'auth'  => [
                 'user'          => \Illuminate\Support\Facades\Auth::user() ? \Illuminate\Support\Facades\Auth::user() : null,
                 'isAdmin' => Auth::check() && Auth::user()->hasRole('admin'),

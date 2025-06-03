@@ -44,9 +44,15 @@ Route::prefix('admin')->group(function () {
         // route messages
         Route::resource('/messages', App\Http\Controllers\Admin\MessageController::class, ['as' => 'admin']);
 
-        Route::get('/reports/rentals', [App\Http\Controllers\Admin\RentalReportController::class, 'index'])->name('reports.rentals');
-        Route::post('/reports/rentals/generate', [App\Http\Controllers\Admin\RentalReportController::class, 'generate'])->name('reports.rentals.generate');
-        Route::get('/reports/rentals/export', [App\Http\Controllers\Admin\RentalReportController::class, 'export'])->name('reports.rentals.export');
+        Route::get('/reports/rentals', [App\Http\Controllers\Admin\RentalReportController::class, 'index'])
+            ->name('reports.rentals');
+        Route::post('/reports/rentals/generate', [App\Http\Controllers\Admin\RentalReportController::class, 'generate'])
+            ->name('reports.rentals.generate');
+        Route::get('/reports/rentals/export', [App\Http\Controllers\Admin\RentalReportController::class, 'export'])
+            ->name('reports.rentals.export');
+
+        // route customers
+        Route::resource('/customers', App\Http\Controllers\Admin\CustomerController::class, ['as' => 'admin']);
     });
 });
 

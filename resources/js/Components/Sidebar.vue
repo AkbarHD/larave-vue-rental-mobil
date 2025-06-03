@@ -1,7 +1,8 @@
 <template>
     <nav id="sidebarMenu" class="sidebar d-lg-block bg-gray-800 text-white collapse" data-simplebar>
         <div class="sidebar-inner px-4 pt-3">
-            <div class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
+            <div
+                class="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
                 <div class="collapse-close d-md-none">
                     <a href="#sidebarMenu" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
                         aria-controls="sidebarMenu" aria-expanded="true" aria-label="Toggle navigation">
@@ -17,24 +18,27 @@
             <ul class="nav flex-column pt-3 pt-md-0">
                 <!-- Sidebar Header -->
                 <li class="nav-item">
-                    <span class="mt-2 d-flex justify-content-between">
-                        <span>
-                            <span class="sidebar-text fw-bold">CepatCar</span>
-                        </span>
+                    <span class="mt-2 d-flex align-items-center">
+                        <!-- Logo -->
+                        <img v-if="$page.props.siteSetting.logo" :src="$page.props.siteSetting.logo" alt="Logo"
+                            class="rounded me-2" style="height: 30px;" @error="$event.target.style.display = 'none'">
+                        <!-- Site Name -->
+                        <span class="sidebar-text fw-bold">{{ $page.props.siteSetting.site_name }}</span>
                     </span>
                 </li>
+
 
                 <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
 
                 <!-- Dashboard -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/dashboard') }">
                     <Link href="/admin/dashboard" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-tachometer-alt icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Dashboard</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-tachometer-alt icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Dashboard</span>
+                    </span>
                     </Link>
                 </li>
 
@@ -43,48 +47,48 @@
                 <!-- Sliders -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/sliders') }">
                     <Link href="/admin/sliders" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-sliders-h icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Sliders</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-sliders-h icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Sliders</span>
+                    </span>
                     </Link>
                 </li>
 
-                  <!-- catgories -->
+                <!-- catgories -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/categories') }">
                     <Link href="/admin/categories" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-tags icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Category</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-tags icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Category</span>
+                    </span>
                     </Link>
                 </li>
 
                 <!-- Cars -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/cars') }">
                     <Link href="/admin/cars" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-car icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Cars</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-car icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Cars</span>
+                    </span>
                     </Link>
                 </li>
 
                 <!-- Rentals -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/rentals') }">
                     <Link href="/admin/rentals" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-file-alt icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Daftar Rentals</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-file-alt icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Daftar Rentals</span>
+                    </span>
                     </Link>
                 </li>
 
@@ -93,75 +97,90 @@
                 <!-- Addons -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/addons') }">
                     <Link href="/admin/addons" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-cogs icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Addons</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-cogs icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Addons</span>
+                    </span>
                     </Link>
                 </li>
 
                 <!-- Payments -->
                 <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/payments') }">
                     <Link href="/admin/payments" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-dollar-sign icon icon-xs me-2"></i>
-                            </span>
-                            <span class="sidebar-text">Payments</span>
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-dollar-sign icon icon-xs me-2"></i>
                         </span>
+                        <span class="sidebar-text">Payments</span>
+                    </span>
                     </Link>
                 </li>
 
 
-                    <!-- Reviews  -->
-                    <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reviews') }">
-                        <Link href="/admin/reviews" class="nav-link d-flex justify-content-between align-items-center">
-                            <span>
-                                <span class="sidebar-icon">
-                                    <i class="fa fa-star icon icon-xs me-2"></i>
-                                </span>
-                                <span class="sidebar-text">Reviews</span>
-                            </span>
-                        </Link>
-                    </li>
+                <!-- Reviews  -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reviews') }">
+                    <Link href="/admin/reviews" class="nav-link d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-star icon icon-xs me-2"></i>
+                        </span>
+                        <span class="sidebar-text">Reviews</span>
+                    </span>
+                    </Link>
+                </li>
 
-                   <!-- site setting -->
-                    <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/site-settings') }">
-                        <Link href="/admin/site-settings" class="nav-link d-flex justify-content-between align-items-center">
-                            <span>
-                                <span class="sidebar-icon">
-                                    <i class="fa fa-cog icon icon-xs me-2"></i>
-                                </span>
-                                <span class="sidebar-text">Site settings</span>
-                            </span>
-                        </Link>
-                    </li>
+                <!-- site setting -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/site-settings') }">
+                    <Link href="/admin/site-settings"
+                        class="nav-link d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-cog icon icon-xs me-2"></i>
+                        </span>
+                        <span class="sidebar-text">Site settings</span>
+                    </span>
+                    </Link>
+                </li>
 
-                   <!-- template message -->
-                    <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/messages') }">
-                        <Link href="/admin/messages" class="nav-link d-flex justify-content-between align-items-center">
-                            <span>
-                                <span class="sidebar-icon">
-                                    <i class="fa fa-envelope-open-text icon icon-xs me-2"></i>
-                                </span>
-                                <span class="sidebar-text">Template message</span>
-                            </span>
-                        </Link>
-                    </li>
-                     <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
-                     <!-- Laporan -->
-                     <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reports') }">
-                        <Link href="/admin/reports/rentals" class="nav-link d-flex justify-content-between align-items-center">
-                            <span>
-                                <span class="sidebar-icon">
-                                    <i class="fa fa-chart-bar icon icon-xs me-2"></i>
-                                </span>
-                                <span class="sidebar-text">Laporan Penyewaan</span>
-                            </span>
-                        </Link>
-                    </li>
+                <!-- template message -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/messages') }">
+                    <Link href="/admin/messages" class="nav-link d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-envelope-open-text icon icon-xs me-2"></i>
+                        </span>
+                        <span class="sidebar-text">Template message</span>
+                    </span>
+                    </Link>
+                </li>
+                <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                <!-- Laporan -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reports') }">
+                    <Link href="/admin/reports/rentals"
+                        class="nav-link d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-chart-bar icon icon-xs me-2"></i>
+                        </span>
+                        <span class="sidebar-text">Laporan Penyewaan</span>
+                    </span>
+                    </Link>
+                </li>
+
+                <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                <!-- customer -->
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/customers') }">
+                    <Link href="/admin/customers" class="nav-link d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="sidebar-icon">
+                            <i class="fa fa-users icon icon-xs me-2"></i>
+                        </span>
+                        <span class="sidebar-text">Daftar Customer</span>
+                    </span>
+                    </Link>
+                </li>
 
             </ul>
         </div>
