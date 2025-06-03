@@ -139,29 +139,29 @@
                         </Link>
                     </li>
 
-                <!-- template message -->
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
-                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-envelope-open-text icon icon-xs me-2"></i>
+                   <!-- template message -->
+                    <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/messages') }">
+                        <Link href="/admin/messages" class="nav-link d-flex justify-content-between align-items-center">
+                            <span>
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-envelope-open-text icon icon-xs me-2"></i>
+                                </span>
+                                <span class="sidebar-text">Template message</span>
                             </span>
-                            <span class="sidebar-text">Template Messages</span>
-                        </span>
-                    </Link>
-                </li>
-
-                <!-- Laporan -->
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
-                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
-                        <span>
-                            <span class="sidebar-icon">
-                                <i class="fa fa-chart-bar icon icon-xs me-2"></i>
+                        </Link>
+                    </li>
+                     <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
+                     <!-- Laporan -->
+                     <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/reports') }">
+                        <Link href="/admin/reports/rentals" class="nav-link d-flex justify-content-between align-items-center">
+                            <span>
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-chart-bar icon icon-xs me-2"></i>
+                                </span>
+                                <span class="sidebar-text">Laporan Penyewaan</span>
                             </span>
-                            <span class="sidebar-text">Laporan Penyewaan</span>
-                        </span>
-                    </Link>
-                </li>
+                        </Link>
+                    </li>
 
             </ul>
         </div>
