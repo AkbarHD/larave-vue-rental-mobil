@@ -92,8 +92,8 @@
                 <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
 
                 <!-- Addons -->
-                <li class="nav-item" :class="{ 'active': $page.url.startsWith('') }">
-                    <Link href="" class="nav-link d-flex justify-content-between align-items-center">
+                <li class="nav-item" :class="{ 'active': $page.url.startsWith('/admin/addons') }">
+                    <Link href="/admin/addons" class="nav-link d-flex justify-content-between align-items-center">
                     <span>
                         <span class="sidebar-icon">
                             <i class="fa fa-cogs icon icon-xs me-2"></i>
