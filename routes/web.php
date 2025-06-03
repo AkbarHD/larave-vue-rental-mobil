@@ -36,6 +36,10 @@ Route::prefix('admin')->group(function () {
 
         // route reviews
         Route::resource('/reviews', App\Http\Controllers\Admin\ReviewController::class, ['as' => 'admin']);
+
+        // route sites
+        Route::get('/site-settings', [App\Http\Controllers\Admin\SiteController::class, 'index'])->name('admin.site-settings');
+        Route::post('/site-settings', [App\Http\Controllers\Admin\SiteController::class, 'update'])->name('admin.site-settings.update');
     });
 });
 
