@@ -22,7 +22,7 @@
 
                         <!-- Cars -->
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <Link href="/" :class="{ 'text-primary': isActive('/'), 'text-muted': !isActive('/') }"
+                            <Link href="/cars" :class="{ 'text-primary': isActive('/cars'), 'text-muted': !isActive('/') }"
                                 class="text-decoration-none d-flex flex-column align-items-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">

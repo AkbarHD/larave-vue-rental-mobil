@@ -1,10 +1,10 @@
 <?php
 
+use App\Http\Controllers\Web\HomeController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return inertia('Web/Home/Index');
-});
+
+Route::get('/', [App\Http\Controllers\Web\HomeController::class, 'index']);
 
 Route::post('/logout', \App\Http\Controllers\Auth\LogoutController::class)->name('logout')->middleware('auth');
 
@@ -66,3 +66,10 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::post('/rentals/{id}/reject', [App\Http\Controllers\Admin\RentalController::class, 'reject'])->name('rentals.reject');
     Route::post('/rentals/{id}/confirm-return', [App\Http\Controllers\Admin\RentalController::class, 'confirmReturn'])->name('rentals.confirmReturn');
 });
+
+
+// routes/web.php
+Route::get('/cars', [App\Http\Controllers\Web\CarController::class, 'index'])->name('cars.index');
+Route::get('/car/{slug}', [App\Http\Controllers\Web\CarController::class, 'show'])->name('car-detail');
+Route::get('/load-more-cars', [App\Http\Controllers\Web\CarController::class, 'loadMore'])->name('cars.loadMore');
+Route::get('/payment-channels', [App\Http\Controllers\TripayController::class, 'getPaymentChannels']);
