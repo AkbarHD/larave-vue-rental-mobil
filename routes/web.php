@@ -68,8 +68,11 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 });
 
 
-// routes/web.php
 Route::get('/cars', [App\Http\Controllers\Web\CarController::class, 'index'])->name('cars.index');
 Route::get('/car/{slug}', [App\Http\Controllers\Web\CarController::class, 'show'])->name('car-detail');
 Route::get('/load-more-cars', [App\Http\Controllers\Web\CarController::class, 'loadMore'])->name('cars.loadMore');
 Route::get('/payment-channels', [App\Http\Controllers\TripayController::class, 'getPaymentChannels']);
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::post('/payments', [App\Http\Controllers\Web\CarController::class, 'store'])->name('rentals.store');
+});

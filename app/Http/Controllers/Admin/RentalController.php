@@ -7,13 +7,19 @@ use App\Models\Rental;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Services\NotificationService;
 
 class RentalController extends Controller
 {
+    protected $notificationService;
+    public function __construct(NotificationService $notificationService)
+    {
+        $this->notificationService = $notificationService;
+    }
 
     public function index()
     {
-        $rentals = Rental::with(['car', 'paymentMethod'])->latest()->paginate(10);
+        $rentals = Rental::with(['car', 'paymentMethod', 'payments'])->latest()->paginate(10);
 
         return Inertia::render('Admin/Rentals/Index', [
             'rentals' => $rentals,
@@ -54,6 +60,7 @@ class RentalController extends Controller
         $rental->save();
         $car->save();
 
+        $this->notificationService->sendApprovedNotification($rental);
         return back();
     }
 
@@ -77,6 +84,7 @@ class RentalController extends Controller
             ]);
         }
 
+        $this->notificationService->sendRejectedNotification($rental, $request->rejection_reason);
         return back();
     }
 
@@ -107,12 +115,15 @@ class RentalController extends Controller
             $rental->late_fee = $lateFee;
             $rental->total_fee += $lateFee;
 
-            // Menyimpan bukti pembayaran denda jika ada
             if ($request->hasFile('late_fee_payment_proof')) {
                 $hashName = $request->file('late_fee_payment_proof')->hashName();
                 $request->file('late_fee_payment_proof')->storeAs('late_fee_proofs', $hashName, 'public');
                 $rental->late_fee_payment_proof = $hashName;
             }
+
+            $this->notificationService->sendLateReturnNotification($rental, $lateFee);
+        } else {
+            $this->notificationService->sendReturnOnTimeNotification($rental);
         }
 
         // Proses pengembalian

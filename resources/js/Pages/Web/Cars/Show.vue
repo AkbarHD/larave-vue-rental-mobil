@@ -64,7 +64,7 @@
                 <h5 class="mb-0 fw-bold">Form Pemesanan</h5>
             </div>
             <div class="card-body p-3">
-                <form @submit.prevent="">
+                <form @submit.prevent="submitRental">
                     <!-- Rental Dates Section -->
                     <div class="row g-3 mb-4">
                         <div class="col-md-6" v-for="(field, index) in dateFields" :key="index">
@@ -296,6 +296,7 @@
     import MainLayout from '../../../Layouts/MainLayout.vue';
     import Swal from "sweetalert2";
     import axios from "axios";
+    import { router } from "@inertiajs/vue3";
 
     export default {
         components: {
@@ -309,6 +310,11 @@
             siteSetting: {
                 type: Object,
                 required: true
+            },
+
+            auth: {
+                type: Object,
+                default: () => ({})
             },
         },
         setup(props) {
@@ -490,6 +496,93 @@
                 });
             };
 
+            const submitRental = () => {
+                if (!props.auth.user) {
+                    router.visit('/login');
+                    return;
+                }
+
+                if (!props.auth.verified) {
+                    Swal.fire({
+                        title: 'Email Belum Diverifikasi',
+                        text: 'Anda perlu memverifikasi email terlebih dahulu sebelum melanjutkan pemesanan.',
+                        icon: 'warning',
+                        confirmButtonText: 'OK',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            router.visit('/email/verify');
+                        }
+                    });
+                    return false;
+                }
+
+                isSubmitting.value = true;
+                const rentalData = {
+                    ...rentalForm,
+                    total_days: calculatedRental.value.totalDays,
+                    base_rental_fee: calculatedRental.value.baseRentalFee,
+                    additional_fee: calculatedRental.value.additionalFee,
+                    total_fee: calculatedRental.value.totalFee,
+                };
+
+                if (rentalForm.payment_type === 'tripay') {
+                    submitTripayForm(rentalData);
+                    return;
+                }
+
+                submitManualPayment(rentalData);
+            };
+
+            const submitTripayForm = (rentalData) => {
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '/payments';
+
+                // Add CSRF token
+                const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+                const csrfInput = document.createElement('input');
+                csrfInput.type = 'hidden';
+                csrfInput.name = '_token';
+                csrfInput.value = csrfToken;
+                form.appendChild(csrfInput);
+
+                // Add all rental form data as hidden inputs
+                Object.keys(rentalData).forEach(key => {
+                    if (rentalData[key] !== null) {
+                        const input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = rentalData[key];
+                        form.appendChild(input);
+                    }
+                });
+
+                document.body.appendChild(form);
+                form.submit();
+            };
+
+            const submitManualPayment = (rentalData) => {
+                router.post('/payments', rentalData, {
+                    onSuccess: () => {
+                        isSubmitting.value = false;
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: 'Pesanan sewa mobil Anda telah berhasil dibuat.',
+                            icon: 'success',
+                            confirmButtonText: 'OK',
+                        });
+                    },
+                    onError: () => {
+                        isSubmitting.value = false;
+                        window.scrollTo({
+                            top: document.getElementById('booking-section').offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            };
+
+
 
             // Add CSS for cursor pointer
             const style = document.createElement('style');
@@ -519,6 +612,7 @@
                 handlePaymentTypeChange,
                 copyToClipboard,
                 toggleAddon,
+                submitRental
             };
         },
     };
