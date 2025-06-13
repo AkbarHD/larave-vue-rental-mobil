@@ -22,7 +22,8 @@
 
                         <!-- Cars -->
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <Link href="/cars" :class="{ 'text-primary': isActive('/cars'), 'text-muted': !isActive('/') }"
+                            <Link href="/cars"
+                                :class="{ 'text-primary': isActive('/cars'), 'text-muted': !isActive('/cars') }"
                                 class="text-decoration-none d-flex flex-column align-items-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
@@ -38,7 +39,8 @@
 
                         <!-- Rentals -->
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <Link href="/" :class="{ 'text-primary': isActive('/'), 'text-muted': !isActive('/') }"
+                            <Link href="/rentals"
+                                :class="{ 'text-primary': isActive('/rentals'), 'text-muted': !isActive('/rentals') }"
                                 class="text-decoration-none d-flex flex-column align-items-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
@@ -56,7 +58,8 @@
 
                         <!-- About -->
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <Link href="/" :class="{ 'text-primary': isActive('/'), 'text-muted': !isActive('/') }"
+                            <Link href="/abouts"
+                                :class="{ 'text-primary': isActive('/abouts'), 'text-muted': !isActive('/abouts') }"
                                 class="text-decoration-none d-flex flex-column align-items-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
@@ -73,7 +76,8 @@
 
                         <!-- Profile -->
                         <div class="col d-flex flex-column align-items-center justify-content-center">
-                            <Link href="/" :class="{ 'text-primary': isActive('/'), 'text-muted': !isActive('/') }"
+                            <Link href="/profile"
+                                :class="{ 'text-primary': isActive('/profile'), 'text-muted': !isActive('/profile') }"
                                 class="text-decoration-none d-flex flex-column align-items-center">
                             <div
                                 class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">

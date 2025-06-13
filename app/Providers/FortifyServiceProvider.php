@@ -11,18 +11,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
-use Laravel\Fortify\Fortify;
 use Inertia\Inertia;
+use Laravel\Fortify\Fortify;
 
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
-    public function register(): void
-    {
-        //
-    }
+    public function register(): void {}
 
     /**
      * Bootstrap any application services.
@@ -49,16 +46,19 @@ class FortifyServiceProvider extends ServiceProvider
             return Inertia::render('Auth/Login');
         });
 
-        // register
         Fortify::registerView(function () {
             return Inertia::render('Auth/Register');
         });
 
-        //reset
-         Fortify::requestPasswordResetLinkView(function () {
+        Fortify::requestPasswordResetLinkView(function () {
             return Inertia::render('Auth/ForgotPassword');
         });
 
+        Fortify::verifyEmailView(function () {
+            return Inertia::render('Auth/VerifyEmail', ['status' => session('status')]);
+        });
+
+        //reset
         Fortify::resetPasswordView(function ($request) {
             return Inertia::render('Auth/ResetPassword', [
                 'email' => $request->input('email'),

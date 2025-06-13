@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 Route::get('/', [App\Http\Controllers\Web\HomeController::class, 'index']);
@@ -75,4 +78,20 @@ Route::get('/payment-channels', [App\Http\Controllers\TripayController::class, '
 
 Route::group(['middleware' => ['auth']], function () {
     Route::post('/payments', [App\Http\Controllers\Web\CarController::class, 'store'])->name('rentals.store');
+    Route::get('/rentals', [App\Http\Controllers\Web\RentalController::class, 'index'])->name('rentals.index');
+    Route::post('/rentals/{rental}/review', [App\Http\Controllers\Web\ReviewController::class, 'store'])->name('reviews.store');
+
+    // Rute profile
+    Route::get('/profile', [App\Http\Controllers\Web\ProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile/upload', [App\Http\Controllers\Web\ProfileController::class, 'uploadImage']);
+    Route::post('/profile/update', [App\Http\Controllers\Web\ProfileController::class, 'updateProfile']);
 });
+
+Route::get('/abouts', function () {
+    return Inertia::render('Web/About/Index');
+})->name('abouts.index');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');

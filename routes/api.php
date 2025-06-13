@@ -8,3 +8,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('/tripay/callback', [App\Http\Controllers\TripayController::class, 'handleCallback'])->name('tripay.callback');
+Route::get('/search', [App\Http\Controllers\Web\SearchController::class, 'search']);
