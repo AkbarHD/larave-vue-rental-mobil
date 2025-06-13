@@ -35,4 +35,16 @@ return [
         ],
     ],
 
+    'tripay' => [
+        'base_url' => env('TRIPAY_BASE_URL', 'https://tripay.co.id/api-sandbox'),
+        'api_key' => env('TRIPAY_API_KEY'),
+        'merchant_code' => env('TRIPAY_MERCHANT_CODE'),
+        'private_key' => env('TRIPAY_PRIVATE_KEY'),
+        'production' => env('TRIPAY_PRODUCTION', false),
+    ],
+
+    'fonnte' => [
+        'api_token' => env('FONNTE_API_TOKEN'),
+    ],
+
 ];
