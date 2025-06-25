@@ -46,7 +46,7 @@ export default {
         status: String,
     },
     methods: {
-        sendVerification() {
+        sendVerification() { 
             router.post('/email/verification-notification');
         },
         logout() {
